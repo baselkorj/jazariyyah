@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jazariyyah/pages/chapter_view.dart';
 import 'package:jazariyyah/pages/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -20,9 +21,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('ar', '')],
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.red, fontFamily: 'almarai'),
       home: const Directionality(
           textDirection: TextDirection.rtl, child: HomePage()),
     );
