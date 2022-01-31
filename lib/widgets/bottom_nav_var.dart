@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jazariyyah/content/strings.dart';
+import 'package:jazariyyah/global.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -20,6 +21,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
         BottomNavigationBarItem(
             icon: const Icon(Icons.bookmark), label: ui['bookmarks'])
       ],
+      selectedItemColor: Colors.red[400],
+      currentIndex: selectedPage,
+      onTap: (val) => setState(() {
+        selectedPage = val;
+      }),
     );
   }
 }
