@@ -1,5 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:jazariyyah/content/strings.dart';
+import 'package:jazariyyah/global.dart';
 import 'package:jazariyyah/widgets/bottom_nav_var.dart';
 import 'package:jazariyyah/widgets/chapters_list.dart';
 
@@ -14,10 +15,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: const Padding(
-        padding: EdgeInsets.all(12.0),
-        child: ChaptersList(),
+      appBar: AppBar(
+        backgroundColor: Colors.red[400],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ValueListenableBuilder<int>(
+          valueListenable: selectedPage,
+          builder: (context, value, _) {
+            if (selectedPage.value == 0) {
+              return const ChaptersList();
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
       bottomNavigationBar: const BottomNavBar(),
     );
