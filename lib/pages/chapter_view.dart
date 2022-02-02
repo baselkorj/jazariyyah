@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 
 class ChapterView extends StatefulWidget {
-  const ChapterView({Key? key}) : super(key: key);
+  final currentChapter;
+
+  const ChapterView({Key? key, this.currentChapter}) : super(key: key);
 
   @override
   _ChapterViewState createState() => _ChapterViewState();
 }
 
 class _ChapterViewState extends State<ChapterView> {
+  int currentPage = 1;
+  int numberOfPages = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.red[400],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -60,12 +66,18 @@ class _ChapterViewState extends State<ChapterView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.red.shade400)),
                     onPressed: () {},
                     child: const Icon(
                       Icons.arrow_left,
                       size: 64.0,
                     )),
                 ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Colors.red.shade400)),
                     onPressed: () {},
                     child: const Icon(
                       Icons.arrow_right,
