@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jazariyyah/content/strings.dart';
 
 class ChapterView extends StatefulWidget {
   final currentChapter;
@@ -16,7 +17,9 @@ class _ChapterViewState extends State<ChapterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red[400],
+        title: Text(chapters["${widget.currentChapter}"]),
+        centerTitle: true,
+        backgroundColor: Colors.red[300],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
