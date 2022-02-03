@@ -16,7 +16,10 @@ class ChaptersList extends StatelessWidget {
               title: Text(chapters.values.toList()[index]),
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ChapterView()),
+                MaterialPageRoute(
+                    builder: (context) => ChapterView(
+                          currentChapter: chapters.keys.toList()[index],
+                        )),
               ),
             ),
           );
