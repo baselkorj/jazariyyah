@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/change_notifier.dart';
 import 'package:jazariyyah/content/strings.dart';
 import 'package:jazariyyah/global.dart';
 
@@ -18,11 +17,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
         BottomNavigationBarItem(
             icon: const Icon(Icons.book), label: ui['chapters']),
         BottomNavigationBarItem(
-            icon: const Icon(Icons.edit), label: ui['notes']),
+            icon: const Icon(Icons.article), label: ui['verses']),
         BottomNavigationBarItem(
             icon: const Icon(Icons.bookmark), label: ui['bookmarks'])
       ],
-      selectedItemColor: Colors.red[400],
+      selectedItemColor: Colors.red[300],
       currentIndex: selectedPage.value,
       onTap: (val) => setState(() {
         selectedPage.value = val;
