@@ -55,6 +55,15 @@ class _ChapterViewState extends State<ChapterView> {
                 children: [
                   Expanded(
                     child: Container(
+                      child: Center(
+                        child: Text(
+                          '$currentPage',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red[300],
+                              fontSize: 16),
+                        ),
+                      ),
                       decoration: const BoxDecoration(
                         color: Color(0xFFFFCDD2),
                         borderRadius: BorderRadius.only(
@@ -65,6 +74,15 @@ class _ChapterViewState extends State<ChapterView> {
                   ),
                   Expanded(
                     child: Container(
+                      child: Center(
+                        child: Text(
+                          '$numberOfPages',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 16),
+                        ),
+                      ),
                       decoration: const BoxDecoration(
                         color: Color(0xFFEF9A9A),
                         borderRadius: BorderRadius.only(
