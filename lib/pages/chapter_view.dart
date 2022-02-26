@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jazariyyah/content/strings.dart';
+import 'package:jazariyyah/global.dart';
 
 class ChapterView extends StatefulWidget {
   final currentChapter;
@@ -12,9 +13,11 @@ class ChapterView extends StatefulWidget {
 
 class _ChapterViewState extends State<ChapterView> {
   int currentPage = 1;
-  int numberOfPages = 0;
+
   @override
   Widget build(BuildContext context) {
+    int numberOfPages = 4;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(chapters["${widget.currentChapter}"]),
@@ -35,9 +38,10 @@ class _ChapterViewState extends State<ChapterView> {
                 aspectRatio: 1280 / 720,
                 child: Container(
                   decoration: BoxDecoration(
-                      image: const DecorationImage(
+                      image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: AssetImage("images/chapters/1/1.png")),
+                          image:
+                              AssetImage("images/chapters/1/$currentPage.png")),
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(15.0)),
                 ),
@@ -76,24 +80,36 @@ class _ChapterViewState extends State<ChapterView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.red.shade400)),
-                    onPressed: () {},
-                    child: const Icon(
-                      Icons.arrow_left,
-                      size: 64.0,
-                    )),
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.red.shade400)),
-                    onPressed: () {},
-                    child: const Icon(
-                      Icons.arrow_right,
-                      size: 64.0,
-                    ))
+                currentPage != 1
+                    ? ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.red.shade400)),
+                        onPressed: () {
+                          setState(() {
+                            currentPage--;
+                          });
+                        },
+                        child: const Icon(
+                          Icons.arrow_left,
+                          size: 64.0,
+                        ))
+                    : Container(),
+                currentPage != numberOfPages
+                    ? ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Colors.red.shade400)),
+                        onPressed: () {
+                          setState(() {
+                            currentPage++;
+                          });
+                        },
+                        child: const Icon(
+                          Icons.arrow_right,
+                          size: 64.0,
+                        ))
+                    : Container()
               ],
             )
           ],
