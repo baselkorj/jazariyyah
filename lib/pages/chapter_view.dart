@@ -20,6 +20,7 @@ class _ChapterViewState extends State<ChapterView> {
         title: Text(chapters["${widget.currentChapter}"]),
         centerTitle: true,
         backgroundColor: Colors.red[300],
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.bookmark_add))],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -28,14 +29,21 @@ class _ChapterViewState extends State<ChapterView> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(child: Container()),
-            Container(
-              height: 250,
-              width: 500,
-              decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(15.0)),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 420),
+              child: AspectRatio(
+                aspectRatio: 1280 / 720,
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: const DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage("images/chapters/1/1.png")),
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(15.0)),
+                ),
+              ),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 15.0),
             SizedBox(
               height: 35.0,
               width: 70.0,
