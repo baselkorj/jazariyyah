@@ -13,7 +13,8 @@ class ChaptersList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              title: Text(chapters.values.toList()[index]),
+              title: Text(
+                  "${index != 0 && index != 17 ? "$index." : ""} ${chapters.values.toList()[index]}"),
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
