@@ -23,4 +23,8 @@ List<int> chapterPages = [
   4,
 ];
 
-Map bookmarkedPages = {};
+List<List> bookmarkedPages = [
+  [0, 3],
+  [1, 2],
+  [2, 1]
+];

@@ -4,8 +4,10 @@ import 'package:jazariyyah/global.dart';
 
 class ChapterView extends StatefulWidget {
   final currentChapter;
+  final page;
 
-  const ChapterView({Key? key, this.currentChapter}) : super(key: key);
+  const ChapterView({Key? key, this.currentChapter, this.page})
+      : super(key: key);
 
   @override
   _ChapterViewState createState() => _ChapterViewState();
@@ -13,14 +15,19 @@ class ChapterView extends StatefulWidget {
 
 class _ChapterViewState extends State<ChapterView> {
   int currentPage = 1;
+  int numberOfPages = 4;
+  bool updated = false;
 
   @override
   Widget build(BuildContext context) {
-    int numberOfPages = 4;
+    if (!updated && widget.page != null) {
+      currentPage = widget.page;
+      updated = true;
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(chapters["${widget.currentChapter}"]),
+        title: Text(chapters[widget.currentChapter]),
         centerTitle: true,
         backgroundColor: Colors.red[300],
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.bookmark_add))],

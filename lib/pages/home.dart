@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jazariyyah/global.dart';
+import 'package:jazariyyah/widgets/bookmarks_list.dart';
 import 'package:jazariyyah/widgets/bottom_nav_var.dart';
 import 'package:jazariyyah/widgets/chapters_list.dart';
 
@@ -27,6 +28,8 @@ class _HomePageState extends State<HomePage> {
           builder: (context, value, _) {
             if (selectedPage.value == 0) {
               return const ChaptersList();
+            } else if (selectedPage.value == 2) {
+              return const BookmarksList();
             } else {
               return Container();
             }
