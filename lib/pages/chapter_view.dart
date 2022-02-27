@@ -20,9 +20,22 @@ class _ChapterViewState extends State<ChapterView> {
 
   @override
   Widget build(BuildContext context) {
+    bool _bookmarked = false;
+    var z = 0;
+
+    print(bookmarkedPages);
+
     if (!updated && widget.page != null) {
       currentPage = widget.page;
       updated = true;
+    }
+
+    for (var i = 0; i < bookmarkedPages.length; i++) {
+      if (bookmarkedPages[i][0] == widget.currentChapter &&
+          bookmarkedPages[i][1] == currentPage) {
+        z = i;
+        _bookmarked = true;
+      }
     }
 
     return Scaffold(
@@ -30,7 +43,21 @@ class _ChapterViewState extends State<ChapterView> {
         title: Text(chapters[widget.currentChapter]),
         centerTitle: true,
         backgroundColor: Colors.red[300],
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.bookmark_add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  if (_bookmarked) {
+                    bookmarkedPages.removeAt(z);
+                  } else {
+                    bookmarkedPages.add([widget.currentChapter, currentPage]);
+                  }
+                });
+              },
+              icon: _bookmarked
+                  ? const Icon(Icons.bookmark_added)
+                  : const Icon(Icons.bookmark_add))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

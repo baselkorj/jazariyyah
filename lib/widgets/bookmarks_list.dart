@@ -14,7 +14,7 @@ class BookmarksList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              leading: FractionallySizedBox(
+              trailing: FractionallySizedBox(
                 heightFactor: 0.65,
                 child: Container(
                     width: 40,
