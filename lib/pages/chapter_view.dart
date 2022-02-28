@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jazariyyah/content/strings.dart';
-import 'package:jazariyyah/global.dart';
+import 'package:jazariyyah/models/global.dart';
+import 'package:jazariyyah/models/db.dart';
+import 'package:jazariyyah/models/global.dart' as global;
 
 class ChapterView extends StatefulWidget {
   final currentChapter;
@@ -23,20 +25,12 @@ class _ChapterViewState extends State<ChapterView> {
     bool _bookmarked = false;
     var z = 0;
 
-    print(bookmarkedPages);
-
     if (!updated && widget.page != null) {
       currentPage = widget.page;
       updated = true;
     }
 
-    for (var i = 0; i < bookmarkedPages.length; i++) {
-      if (bookmarkedPages[i][0] == widget.currentChapter &&
-          bookmarkedPages[i][1] == currentPage) {
-        z = i;
-        _bookmarked = true;
-      }
-    }
+    if (bookmarks.)
 
     return Scaffold(
       appBar: AppBar(
@@ -169,4 +163,14 @@ class _ChapterViewState extends State<ChapterView> {
       ),
     );
   }
+
+  void addBookmark() {
+    final bookmark = Bookmark()
+      ..chapter = widget.currentChapter
+      ..page = currentPage;
+
+    global.bookmarks.value.add(bookmark);
+  }
+
+  void deleteBookmark() {}
 }

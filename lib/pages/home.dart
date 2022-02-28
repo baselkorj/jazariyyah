@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:jazariyyah/global.dart';
+import 'package:jazariyyah/models/global.dart';
 import 'package:jazariyyah/widgets/bookmarks_list.dart';
 import 'package:jazariyyah/widgets/bottom_nav_var.dart';
 import 'package:jazariyyah/widgets/chapters_list.dart';

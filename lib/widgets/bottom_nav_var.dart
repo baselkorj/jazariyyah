@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jazariyyah/content/strings.dart';
-import 'package:jazariyyah/global.dart';
+import 'package:jazariyyah/models/global.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
