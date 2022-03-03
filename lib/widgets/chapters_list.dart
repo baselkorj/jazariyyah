@@ -8,6 +8,7 @@ class ChaptersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        padding: const EdgeInsets.only(top: 10.0),
         physics: const BouncingScrollPhysics(),
         itemCount: chapters.length,
         itemBuilder: (context, index) {

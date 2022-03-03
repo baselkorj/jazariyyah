@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jazariyyah/content/strings.dart';
+import 'package:jazariyyah/models/boxes.dart';
 import 'package:jazariyyah/models/global.dart';
 import 'package:jazariyyah/models/db.dart';
 import 'package:jazariyyah/models/global.dart' as global;
@@ -23,14 +24,23 @@ class _ChapterViewState extends State<ChapterView> {
   @override
   Widget build(BuildContext context) {
     bool _bookmarked = false;
-    var z = 0;
 
     if (!updated && widget.page != null) {
       currentPage = widget.page;
       updated = true;
     }
 
-    if (bookmarks.)
+    final _tempBookmark = Bookmark()
+      ..chapter = widget.currentChapter
+      ..page = currentPage;
+
+    if (bookmarks.value.values
+        .where((bookmark) =>
+            bookmark.chapter == _tempBookmark.chapter &&
+            bookmark.page == _tempBookmark.page)
+        .isNotEmpty) {
+      _bookmarked = true;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -42,9 +52,15 @@ class _ChapterViewState extends State<ChapterView> {
               onPressed: () {
                 setState(() {
                   if (_bookmarked) {
-                    bookmarkedPages.removeAt(z);
+                    final Bookmark _currentBookmark = bookmarks.value.values
+                        .where((bookmark) =>
+                            bookmark.page == currentPage &&
+                            bookmark.chapter == widget.currentChapter)
+                        .first;
+
+                    deleteBookmark(_currentBookmark);
                   } else {
-                    bookmarkedPages.add([widget.currentChapter, currentPage]);
+                    addBookmark(_tempBookmark);
                   }
                 });
               },
@@ -163,14 +179,14 @@ class _ChapterViewState extends State<ChapterView> {
       ),
     );
   }
+}
 
-  void addBookmark() {
-    final bookmark = Bookmark()
-      ..chapter = widget.currentChapter
-      ..page = currentPage;
+void addBookmark(Bookmark bookmark) {
+  final _bookmarks = Boxes.getBookmarks();
+  _bookmarks.add(bookmark);
+}
 
-    global.bookmarks.value.add(bookmark);
-  }
-
-  void deleteBookmark() {}
+void deleteBookmark(Bookmark bookmark) {
+  final _bookmarks = Boxes.getBookmarks();
+  _bookmarks.delete(bookmark.key);
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:jazariyyah/models/global.dart';
 import 'package:jazariyyah/content/strings.dart';
 import 'package:jazariyyah/models/db.dart';
 import 'package:jazariyyah/pages/chapter_view.dart';
@@ -19,44 +18,47 @@ class BookmarksList extends StatelessWidget {
           List<Bookmark> currentBookmarks = box.values.toList();
 
           if (currentBookmarks.isNotEmpty) {
-            for (int index = 0; index < currentBookmarks.length; index++) {
-              return Card(
-                child: ListTile(
-                  trailing: FractionallySizedBox(
-                    heightFactor: 0.65,
-                    child: Container(
-                        width: 40,
-                        child: Center(
-                          child: Text(
-                            '${currentBookmarks[index].page}',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 16),
+            return ListView.builder(
+              padding: const EdgeInsets.only(top: 10.0),
+              itemCount: currentBookmarks.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    trailing: FractionallySizedBox(
+                      heightFactor: 0.65,
+                      child: Container(
+                          width: 40,
+                          child: Center(
+                            child: Text(
+                              '${currentBookmarks[index].page}',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 16),
+                            ),
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                            color: Colors.red[300],
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(5.0)))),
+                          decoration: BoxDecoration(
+                              color: Colors.red[300],
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(5.0)))),
+                    ),
+                    title:
+                        Text("  ${chapters[currentBookmarks[index].chapter]}"),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ChapterView(
+                                currentChapter: currentBookmarks[index].chapter,
+                                page: currentBookmarks[index].page,
+                              )),
+                    ),
                   ),
-                  title: Text("  ${chapters[currentBookmarks[index].chapter]}"),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ChapterView(
-                              currentChapter: currentBookmarks[index].chapter,
-                              page: currentBookmarks[index].page,
-                            )),
-                  ),
-                ),
-              );
-            }
+                );
+              },
+            );
           } else {
             return Container();
           }
-
-          return Container();
         });
   }
 }

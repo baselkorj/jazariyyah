@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.red[300],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: ValueListenableBuilder<int>(
           valueListenable: selectedPage,
           builder: (context, value, _) {
